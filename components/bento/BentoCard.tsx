@@ -14,9 +14,9 @@ export function BentoCard({ className, children, delay = 0 }: BentoCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
+      transition={{ duration: 0.3, delay: delay, ease: "easeOut" }}
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-surface border border-border p-6 shadow-sm hover:border-accent/40 transition-colors duration-500",
+        "group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-surface border border-border p-5 sm:p-6 shadow-sm hover:border-accent/40 transition-colors duration-500",
         className
       )}
     >

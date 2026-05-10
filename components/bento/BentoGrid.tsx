@@ -1,10 +1,10 @@
 "use client";
 
 import { BentoCard } from "./BentoCard";
-import { ArrowUpRight, MapPin, Mail, Code2, Terminal, Database, Clock, Briefcase, Award, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin, Mail, Code2, Terminal, Database, Clock, Briefcase, Award, Phone, Languages } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export function BentoGrid() {
+function LiveClock() {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -23,52 +23,71 @@ export function BentoGrid() {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[180px] gap-3">
+  return <span>{time || "--:--"}</span>;
+}
 
-      {/* 1. Project Card — 2 cols × 2 rows */}
-      <BentoCard className="col-span-2 row-span-2 group/project cursor-pointer" delay={0.1}>
+export function BentoGrid() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-min sm:auto-rows-[180px] gap-3 sm:gap-4">
+
+      {/* 1. Project Card */}
+      <BentoCard className="sm:col-span-2 sm:row-span-2 group/project cursor-pointer min-h-[320px] sm:min-h-0" delay={0.05}>
         {/* Subtle decorative gradient only — no visible text */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-surface-secondary/30 z-0 pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-surface to-transparent z-0 pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col h-full justify-between">
-          {/* Top row */}
-          <div className="flex justify-between items-start">
-            <div className="p-2.5 bg-surface border border-border rounded-xl">
-              <Database className="text-accent" size={18} />
+        <div className="relative z-10 flex flex-col h-full">
+          {/* Top content */}
+          <div className="space-y-4 pb-20 sm:pb-0">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-accent font-mono text-[10px] mb-1 uppercase tracking-widest">Featured Project</p>
+                <a 
+                  href="https://github.com/ReyMartin19/COCIntel" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group/title flex items-center gap-2"
+                >
+                  <h3 className="text-xl font-bold text-foreground group-hover/title:text-accent transition-colors">ClashIntel</h3>
+                  <ArrowUpRight size={14} className="text-foreground-secondary group-hover/title:text-accent transition-all group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5" />
+                </a>
+              </div>
+              <div className="p-2 bg-surface-secondary border border-border rounded-lg">
+                <Database className="text-accent" size={16} />
+              </div>
             </div>
-            <a
-              href="#"
-              className="p-2.5 bg-surface border border-border rounded-full text-foreground-secondary group-hover/project:bg-accent group-hover/project:border-accent group-hover/project:text-background transition-all duration-300"
-            >
-              <ArrowUpRight size={16} />
-            </a>
-          </div>
-
-          {/* Bottom content */}
-          <div className="space-y-3">
-            <div>
-              <p className="text-accent font-mono text-[10px] mb-1 uppercase tracking-widest">Featured Project</p>
-              <h3 className="text-xl font-bold text-foreground">ClashIntel</h3>
-            </div>
-            <p className="text-xs text-foreground-secondary leading-relaxed">
-              A Clash of Clans analytics platform built with Laravel, Vue & MySQL — search clans, wars, and player stats in real-time.
+            
+            <p className="text-xs text-foreground-secondary leading-relaxed max-w-[90%]">
+              A comprehensive Clash of Clans analytics platform built with Laravel, Vue & MySQL. Track clans, wars, and player statistics in real-time.
             </p>
+
             {/* Tech pills */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {["Laravel", "Vue", "MySQL", "API Integration", "Analytics"].map((t) => (
-                <span key={t} className="px-2 py-0.5 text-[10px] font-medium bg-surface-secondary border border-border rounded-md text-foreground-secondary">
+            <div className="flex flex-wrap gap-1.5">
+              {["Laravel", "Vue", "MySQL", "API"].map((t) => (
+                <span key={t} className="px-2 py-0.5 text-[9px] font-medium bg-surface-secondary/50 border border-border rounded text-foreground-secondary">
                   {t}
                 </span>
               ))}
             </div>
           </div>
+
+          {/* Bottom fading footer */}
+          <div className="absolute -bottom-6 -left-6 -right-6 h-28 bg-gradient-to-t from-surface via-surface/90 to-transparent flex items-end justify-center sm:justify-start sm:pl-8 pb-8">
+            <a 
+              href="https://github.com/ReyMartin19" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest group-hover:gap-3 transition-all z-20"
+            >
+              <span>Check out more</span>
+              <ArrowUpRight size={12} />
+            </a>
+          </div>
         </div>
       </BentoCard>
 
-      {/* 2. Experience Card — 1 col × 2 rows */}
-      <BentoCard className="col-span-1 row-span-2 flex flex-col" delay={0.2}>
+      {/* 2. Experience Card */}
+      <BentoCard className="col-span-1 sm:row-span-2 flex flex-col" delay={0.1}>
         <div className="flex items-center gap-2 mb-5">
           <Briefcase className="text-accent" size={17} />
           <h3 className="text-sm font-bold">Experience</h3>
@@ -96,8 +115,8 @@ export function BentoGrid() {
         </div>
       </BentoCard>
 
-      {/* 3. Location + Contact — merged, 1 col × 2 rows */}
-      <BentoCard className="col-span-1 row-span-2 flex flex-col justify-between" delay={0.3}>
+      {/* 3. Location + Contact */}
+      <BentoCard className="col-span-1 sm:row-span-2 flex flex-col justify-between" delay={0.15}>
         {/* Location section */}
         <div>
           <div className="flex items-center justify-between mb-3">
@@ -107,11 +126,23 @@ export function BentoGrid() {
             </div>
             <div className="flex items-center gap-1 px-1.5 py-0.5 bg-surface-secondary border border-border rounded text-[10px] font-mono text-foreground-secondary">
               <Clock size={9} />
-              <span>{time || "--:--"}</span>
+              <LiveClock />
             </div>
           </div>
           <p className="text-xs font-semibold text-foreground">Bauko, Mtn. Province</p>
           <p className="text-[10px] text-foreground-secondary mt-0.5">Philippines · Asia/Manila</p>
+        </div>
+
+        {/* Languages section */}
+        <div className="mt-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Languages className="text-accent" size={14} />
+            <span className="text-xs font-bold text-foreground">Languages</span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <p className="text-[10px] text-foreground leading-tight">English · Filipino</p>
+            <p className="text-[9px] text-foreground-secondary/70">Ilocano · Kankana-ey</p>
+          </div>
         </div>
 
         {/* Divider */}
@@ -136,18 +167,18 @@ export function BentoGrid() {
             <span>09150326962</span>
           </div>
           <div className="flex gap-2 pt-1">
-            <a href="#" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">GitHub</a>
-            <a href="#" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">LinkedIn</a>
-            <a href="#" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">Facebook</a>
+            <a href="https://github.com/ReyMartin19" target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/rey-martin-agluya-91a59130a/" target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">LinkedIn</a>
+            <a href="https://www.facebook.com/reymartin.agluya.5" target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-[9px] font-medium bg-surface-secondary border border-border rounded text-foreground-secondary hover:text-accent hover:border-accent/50 transition-colors">Facebook</a>
           </div>
         </div>
       </BentoCard>
 
-      {/* 4. Tech Stack + Tools — merged, 2 cols × 1 row */}
-      <BentoCard className="col-span-2 row-span-1 flex flex-col justify-center" delay={0.4}>
-        <div className="flex flex-col gap-2.5">
+      {/* 4. Tech Stack + Tools */}
+      <BentoCard className="col-span-1 sm:col-span-3 sm:row-span-1 flex flex-col justify-between" delay={0.2}>
+        <div className="flex flex-col gap-3">
           {/* Tech Stack */}
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-1.5 shrink-0">
               <Code2 size={12} className="text-accent" />
               <span className="text-[10px] font-mono text-foreground-secondary/70">stack</span>
@@ -161,13 +192,12 @@ export function BentoGrid() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-border/60" />
+          <div className="h-px bg-border" />
 
           {/* Tools */}
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-1.5 shrink-0">
-              <Terminal size={12} className="text-accent" />
+              <Terminal size={12} className="text-accent" /> 
               <span className="text-[10px] font-mono text-foreground-secondary/70">tools</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -181,8 +211,8 @@ export function BentoGrid() {
         </div>
       </BentoCard>
 
-      {/* 5. Awards Card — 1 col × 1 row */}
-      <BentoCard className="col-span-1 row-span-1 flex flex-col justify-between" delay={0.5}>
+      {/* 5. Awards Card */}
+      <BentoCard className="col-span-1 row-span-1 flex flex-col justify-start gap-2.5" delay={0.25}>
         <Award className="text-accent" size={17} />
         <div>
           <p className="text-[10px] text-foreground-secondary mb-2">Certifications</p>
@@ -199,17 +229,7 @@ export function BentoGrid() {
         </div>
       </BentoCard>
 
-      {/* 6. Languages Card — 1 col × 1 row */}
-      <BentoCard className="col-span-1 row-span-1 flex flex-col justify-between" delay={0.6}>
-        <Code2 className="text-accent" size={17} />
-        <div>
-          <p className="text-[10px] text-foreground-secondary mb-2">Languages</p>
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-foreground">English · Tagalog</span>
-            <span className="text-[10px] text-foreground-secondary/70">Kankana-ey · Ilocano</span>
-          </div>
-        </div>
-      </BentoCard>
+
 
     </div>
   );

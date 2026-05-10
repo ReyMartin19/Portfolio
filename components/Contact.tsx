@@ -1,9 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, Languages } from "lucide-react";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("reymartinagluya8@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-6 max-w-5xl">
@@ -31,18 +40,25 @@ export default function Contact() {
             className="lg:col-span-2 space-y-8"
           >
             <div className="space-y-6">
-              <a
-                href="mailto:reymartinagluya8@gmail.com"
-                className="flex items-center gap-4 text-foreground-secondary hover:text-accent transition-colors group"
+              <button
+                onClick={handleCopyEmail}
+                className="flex items-center gap-4 text-foreground-secondary hover:text-accent transition-colors group text-left w-full"
               >
                 <div className="p-3 bg-surface border border-border rounded-lg group-hover:border-accent/50 transition-colors">
-                  <Mail size={20} className="text-accent" />
+                  {copied ? (
+                    <Check size={20} className="text-green-500" />
+                  ) : (
+                    <Mail size={20} className="text-accent" />
+                  )}
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Email</p>
+                  <div className="flex items-center gap-2">
+                    <p className="font-medium text-foreground">Email</p>
+                    {copied && <span className="text-[10px] text-green-500 font-bold uppercase tracking-wider">Copied!</span>}
+                  </div>
                   <p className="text-sm">reymartinagluya8@gmail.com</p>
                 </div>
-              </a>
+              </button>
 
               <div className="flex items-center gap-4 text-foreground-secondary hover:text-accent transition-colors group cursor-default">
                 <div className="p-3 bg-surface border border-border rounded-lg group-hover:border-accent/50 transition-colors">
@@ -63,18 +79,28 @@ export default function Contact() {
                   <p className="text-sm">Bauko, Mountain Province, PH</p>
                 </div>
               </div>
+
+              <div className="flex items-center gap-4 text-foreground-secondary hover:text-accent transition-colors group cursor-default">
+                <div className="p-3 bg-surface border border-border rounded-lg group-hover:border-accent/50 transition-colors">
+                  <Languages size={20} className="text-accent" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Languages</p>
+                  <p className="text-sm">English, Filipino, Ilocano</p>
+                </div>
+              </div>
             </div>
 
             <div className="pt-8 border-t border-border">
               <p className="text-foreground font-medium mb-4">Connect on social</p>
               <div className="flex gap-4">
-                <a href="#" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
+                <a href="https://github.com/ReyMartin19" target="_blank" rel="noopener noreferrer" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
                   GitHub
                 </a>
-                <a href="#" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
+                <a href="https://www.linkedin.com/in/rey-martin-agluya-91a59130a/" target="_blank" rel="noopener noreferrer" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
                   LinkedIn
                 </a>
-                <a href="#" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
+                <a href="https://www.facebook.com/reymartin.agluya.5" target="_blank" rel="noopener noreferrer" className="p-3 bg-surface border border-border rounded-lg text-foreground-secondary hover:text-accent hover:border-accent/50 transition-all hover:-translate-y-1">
                   Facebook
                 </a>
               </div>
