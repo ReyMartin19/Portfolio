@@ -29,12 +29,17 @@ export function HeaderProfile() {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="flex flex-row gap-5 items-center w-full"
     >
-      {/* Profile Picture Placeholder */}
-      <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-secondary rounded-xl border border-border overflow-hidden flex items-center justify-center text-foreground-secondary/40">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>  
+      {/* Profile Picture */}
+      <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-secondary rounded-xl border border-border overflow-hidden flex items-center justify-center">
+        {mounted ? (
+          <img 
+            src={theme === "light" ? "/profile_night.png" : "/profile_morning.png"} 
+            alt="Rey Martin Agluya" 
+            className="w-full h-full object-cover transition-opacity duration-500"
+          />
+        ) : (
+          <div className="w-full h-full animate-pulse bg-surface-secondary" />
+        )}
       </div>
 
       {/* Profile Details */}
@@ -69,7 +74,7 @@ export function HeaderProfile() {
         {/* Row 2: Roles */}
         <div className="mb-1.5">
           <p className="text-foreground-secondary text-xs md:text-base font-medium truncate">
-            IT Student <span className="mx-1 opacity-50">\</span> Developer <span className="mx-1 opacity-50">\</span> UI/UX Designer
+            IT Student <span className="mx-1 opacity-50">\</span> Laravel Fanatic <span className="mx-1 opacity-50">\</span> UI/UX Designer
           </p>
         </div>
 

@@ -99,7 +99,7 @@ export function BentoGrid() {
             <p className="text-xs font-bold text-foreground">Internship</p>
             <p className="text-[10px] text-foreground-secondary/80 mt-0.5">DepEd CAR Regional Office</p>
             <ul className="mt-2 space-y-1">
-              {["Hardware maintenance", "Helpdesk support", "Data encoding"].map((r) => (
+              {["Hardware maintenance", "IT support", "System Development"].map((r) => (
                 <li key={r} className="text-[10px] text-foreground-secondary/70 flex gap-1.5">
                   <span className="text-accent shrink-0">▹</span>{r}
                 </li>
