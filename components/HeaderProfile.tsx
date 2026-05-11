@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { BadgeCheck, Mail, FileText, Sun, Moon, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
@@ -32,9 +33,12 @@ export function HeaderProfile() {
       {/* Profile Picture */}
       <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-secondary rounded-xl border border-border overflow-hidden flex items-center justify-center">
         {mounted ? (
-          <img 
+          <Image 
             src={theme === "light" ? "/profile_night.png" : "/profile_morning.png"} 
             alt="Rey Martin Agluya" 
+            width={96}
+            height={96}
+            priority
             className="w-full h-full object-cover transition-opacity duration-500"
           />
         ) : (
