@@ -78,7 +78,7 @@ export function HeaderProfile() {
         {/* Row 2: Roles */}
         <div className="mb-1.5">
           <p className="text-foreground-secondary text-xs md:text-base font-medium truncate">
-            IT Student <span className="mx-1 opacity-50">\</span> Laravel Fanatic <span className="mx-1 opacity-50">\</span> UI/UX Designer
+            IT Student <span className="mx-1 opacity-50">\</span> Laravel Fanatic
           </p>
         </div>
 

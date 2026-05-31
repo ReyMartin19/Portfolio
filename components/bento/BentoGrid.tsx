@@ -99,7 +99,7 @@ export function BentoGrid() {
             <p className="text-xs font-bold text-foreground">Internship</p>
             <p className="text-[10px] text-foreground-secondary/80 mt-0.5">DepEd CAR Regional Office</p>
             <ul className="mt-2 space-y-1">
-              {["Hardware maintenance", "IT support", "System Development"].map((r) => (
+              {["Hardware maintenance", "IT support", "Troubleshoot", "System Development"].map((r) => (
                 <li key={r} className="text-[10px] text-foreground-secondary/70 flex gap-1.5">
                   <span className="text-accent shrink-0">▹</span>{r}
                 </li>
@@ -108,9 +108,10 @@ export function BentoGrid() {
           </div>
           <div className="relative opacity-50">
             <div className="absolute -left-[27px] top-1 w-2.5 h-2.5 rounded-full bg-border border-2 border-surface" />
-            <p className="text-[10px] text-foreground-secondary font-mono mb-1">2022 – Present</p>
+            <p className="text-[10px] text-foreground-secondary font-mono mb-1">2022 – 2026</p>
             <p className="text-xs font-bold text-foreground">BS Info Technology</p>
             <p className="text-[10px] text-foreground-secondary/80 mt-0.5">King&apos;s College of the PH</p>
+            <p></p>
           </div>
         </div>
       </BentoCard>
